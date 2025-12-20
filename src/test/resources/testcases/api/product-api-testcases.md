@@ -124,7 +124,7 @@ GET /products/{id}
 ### Steps
 1. Send GET request with a non-existing product ID
 
-### Expected Result
+### Expected Result 
 - HTTP status code is **404**
 - Error or empty response is returned
 
