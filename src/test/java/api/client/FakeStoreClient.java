@@ -20,12 +20,17 @@ public class FakeStoreClient {
 		return given().spec(ApiSpecFactory.get())
 		.body(prdct)
 		.when().post("/products");
+				
 		
+	}
+	
+	public Response getProductById(int validprodctid) {
+		
+		return given().spec(ApiSpecFactory.get()).when().get("/products/" + validprodctid);
 		
 		
 		
 	}
-	
 	
 
 }
