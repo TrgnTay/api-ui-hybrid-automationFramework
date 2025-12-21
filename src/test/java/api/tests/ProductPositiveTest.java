@@ -3,6 +3,8 @@ package api.tests;
 import org.testng.annotations.Test;
 
 import api.client.FakeStoreClient;
+import api.models.Product;
+import api.utils.TestDataFactory;
 import io.restassured.response.Response;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -16,7 +18,7 @@ import static org.hamcrest.Matchers.*;
 
 public class ProductPositiveTest {
 	
-	FakeStoreClient client = new FakeStoreClient();
+	private final FakeStoreClient client = new FakeStoreClient();
 	
 	//TC-API-PRDCT-001
 	@Test
@@ -45,7 +47,21 @@ public class ProductPositiveTest {
 		System.out.println(response);
 		
 	}
-	
+	//TC-API-PRDCT-003
+	@Test
+	public void shouldCreateProductSuccessfully() {
+		
+		Product request = TestDataFactory.validProduct();
+		
+		Response response = client.createProduct(request);
+		assertThat(response.statusCode(), is(201));
+		assertThat(response.jsonPath().getString("title"), equalTo(request.getTitle()));
+		assertThat(response.jsonPath().getDouble("price"), closeTo(request.getPrice(), 0.01));
+		
+		
+		
+		
+	}
 	
 	
 
