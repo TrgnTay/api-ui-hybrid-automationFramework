@@ -5,6 +5,8 @@ import api.models.Product;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 
+import java.util.Map;
+
 public class FakeStoreClient {
 	
 	public Response getAllPrducts(){
@@ -33,4 +35,17 @@ public class FakeStoreClient {
 	}
 	
 
+	public Response createProduct(Map<String, Object> invalidPayload) {
+		
+		return given().spec(ApiSpecFactory.get())
+				.body(invalidPayload).post("/products");
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 }

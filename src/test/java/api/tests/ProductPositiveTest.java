@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.*;
  * Th efollowing test cases are covered:
  * TC-API-PRDCT-001 – Get all products
  * TC-API-PRDCT-002 – Get product by ID
- * 
+ * TC-API-PRDCT-003 – Create product with valid payload
  * */
 
 public class ProductPositiveTest {
@@ -62,6 +62,10 @@ public class ProductPositiveTest {
 		
 		
 	}
+	
+	
+	
+	
 	
 	
 
