@@ -52,7 +52,7 @@ an API-first strategy.
 
 Examples:
 - `ProductPositiveTest` – positive product flows
-- `ProductNegativeTest` – negative and error scenarios
+- `ProductNegativeTest` – negative and error scenarios   -FakeStore API does not enforce payload validation; negative scenarios are limited.
 
 This ensures **full traceability** from business requirement to automated validation.
 
