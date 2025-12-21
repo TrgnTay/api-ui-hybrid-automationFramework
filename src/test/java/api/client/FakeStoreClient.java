@@ -26,9 +26,9 @@ public class FakeStoreClient {
 		
 	}
 	
-	public Response getProductById(int validprodctid) {
+	public Response getProductById(int id) {
 		
-		return given().spec(ApiSpecFactory.get()).when().get("/products/" + validprodctid);
+		return given().spec(ApiSpecFactory.get()).when().get("/products/" + id);
 		
 		
 		

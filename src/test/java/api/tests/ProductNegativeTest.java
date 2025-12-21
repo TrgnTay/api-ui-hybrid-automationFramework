@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 public class ProductNegativeTest {
 	
 	private final FakeStoreClient client = new FakeStoreClient();
-	
+	//TC-API-PRDCT-004
 @Test
 	public void shouldRejectInvalidProductPayload() {
 		// TC-API-PRDCT-004
@@ -28,7 +28,7 @@ public class ProductNegativeTest {
 		 
 		 Response response = client.createProduct(invalidProductPayload);
 		
-		assertThat(response.statusCode(), is(201));  //expected status code should be 400.Why? Known limitation: FakeStore API does not validate payload
+		assertThat(response.statusCode(), is(201));  //expected status code should be 400.BUT Known limitation: FakeStore API does not validate payload
 		//response.then().body(not(emptyOrNullString()));
 		
 		
@@ -36,8 +36,22 @@ public class ProductNegativeTest {
 		
 	}
 	
-	
-	
+	//TC-API-PRDCT-005
+	@Test
+	public void shouldReturn404ForNonExistingProduct() {
+		int nonExistingProductId = 999;
+		
+		Response response = client.getProductById(nonExistingProductId);
+		
+		assertThat(response.statusCode(), is(404));   // Expected status code should be 404.But FakeStore API does NOT return 404 for non-existing product IDs.
+		//response.then().body("message", "");     FakeStore limitation
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 	
