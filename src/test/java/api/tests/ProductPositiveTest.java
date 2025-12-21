@@ -21,7 +21,7 @@ public class ProductPositiveTest {
 	private final FakeStoreClient client = new FakeStoreClient();
 	
 	//TC-API-PRDCT-001
-	@Test
+	@Test(groups = "api")
 	public void shouldRetrieveAllProducts() {
 		
 		
@@ -34,7 +34,7 @@ public class ProductPositiveTest {
 		
 		
 	//TC-API-PRDCT-002
-	@Test
+	@Test(groups = "api")
 	public void shouldRetriveProductByValidId() {
 		
 		int productValidId = 2;
@@ -44,11 +44,11 @@ public class ProductPositiveTest {
 		assertThat(response.jsonPath().getInt("id"), equalTo(productValidId));
 		assertThat(response.jsonPath().getString("title"), notNullValue());
 		
-		System.out.println(response);
+		
 		
 	}
 	//TC-API-PRDCT-003
-	@Test
+	@Test(groups = "api")
 	public void shouldCreateProductSuccessfully() {
 		
 		Product request = TestDataFactory.validProduct();
