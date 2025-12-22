@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import api.client.FakeStoreClient;
 import api.models.Product;
+import api.utils.RetryAnalyzer;
 import api.utils.TestDataFactory;
 import io.restassured.response.Response;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,7 +22,7 @@ public class ProductPositiveTest {
 	private final FakeStoreClient client = new FakeStoreClient();
 	
 	//TC-API-PRDCT-001
-	@Test(groups = "api")
+	@Test(groups = "api", retryAnalyzer = api.utils.RetryAnalyzer.class)
 	public void shouldRetrieveAllProducts() {
 		
 		
