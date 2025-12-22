@@ -56,3 +56,16 @@ Examples:
 
 This ensures **full traceability** from business requirement to automated validation.
 
+### TestNG Retry Mechanism
+
+Some tests in this project use TestNG's RetryAnalyzer at method level
+to re-run failed tests a limited number of times.
+
+- Retry is explicitly enabled per test using @Test(retryAnalyzer = ...)
+- No global retry listener is used
+- This avoids hiding real defects while allowing controlled retries
+
+
+
+
+
