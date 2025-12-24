@@ -38,6 +38,21 @@
       <version>7.16.1</version>
     </dependency>
 
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>7.33.0</version>
+    <scope>test</scope>
+</dependency>
+
+
+
+
+
+
+
     <!-- TestNG -->
     <dependency>
       <groupId>org.testng</groupId>
@@ -45,6 +60,12 @@
       <version>7.10.2</version>
       <scope>test</scope>
     </dependency>
+    
+    
+    
+    
+    
+    
     
     
     <dependency>
