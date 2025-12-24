@@ -250,12 +250,12 @@ to re-run failed tests a limited number of times.
 ---
 
 ## Execution Strategy
-```md
+
 ### API Tests (TestNG)
 
-
+```bash
 mvn test
-
+```
 
 Uses:
 testng-api.xml
@@ -264,12 +264,13 @@ API-first execution strategy
 
 UI Tests (Cucumber + JUnit)
 
+```bash
 mvn test -Dtest=RunUiCucumberTest
 With browser selection:
 mvn test -Dtest=RunUiCucumberTest -Dbrowser=chrome
 mvn test -Dtest=RunUiCucumberTest -Dbrowser=firefox
 mvn test -Dtest=RunUiCucumberTest -Dbrowser=edge
-
+```
 Supported browsers: 
 chrom
 firefox
@@ -278,9 +279,9 @@ edge
 
 ---
 
+``
 
 
-```md
 
 ## Author
 
