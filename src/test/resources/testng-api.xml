@@ -3,7 +3,9 @@
 
 <suite name= "API Test Suite">
 
-
+ <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
 
 <test name= "API Tests">
 <groups>
