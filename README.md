@@ -2,20 +2,27 @@
 
 
 
-Senior-level QA automation project demonstrating **API-first testing** and **UI smoke automation**
-using Java-based tooling and real-world QA engineering practices.
+# API + UI Hybrid Automation Framework
 
-This repository reflects how a senior QA designs automation frameworks
-that are scalable, maintainable, and aligned with CI/CD pipelines and business requirements.
+Senior-level QA automation project demonstrating **API-first testing** combined with **UI smoke automation**, built using Java-based tooling and real-world QA engineering practices.
+
+This repository reflects how a **senior QA automation engineer** designs frameworks that are:
+- scalable  
+- maintainable  
+- CI/CD ready  
+- aligned with business requirements and test traceability  
 
 ---
+
 ## Project Goals
+
 
 - Build a **clean, maintainable API automation framework**
 - Apply **real user stories and test cases** before automation
-- Demonstrate **API-first testing strategy**
-- Prepare a scalable foundation for **UI smoke automation**
-- Design the framework to support **multiple test styles (TestNG, JUnit, Cucumber)**
+- Demonstrate an **API-first testing strategy**
+- Implement **UI smoke automation** aligned with CI pipelines
+- Support **multiple execution styles** (TestNG, JUnit, Cucumber)
+- Provide **unified test reporting** for API and UI layers
 
 ---
 
@@ -30,37 +37,62 @@ that are scalable, maintainable, and aligned with CI/CD pipelines and business r
 - TestNG
 - Hamcrest Matchers
 
-### UI Automation (In Progress)
+### UI Automation
 - Selenium WebDriver
 - SauceDemo web application
 - Page Object Model (POM)
+- Cross-browser execution (Chrome / Firefox / Edge)
 
 ### BDD & Alternative Runners (Planned)
 - JUnit
 - Cucumber (Gherkin-based BDD)
 
 
+---
+## Reporting (Allure)
+- This project uses Allure for unified reporting across API and UI tests.
+### Generate Report
+mvn allure:serve
+### Report Includes
+API test results (TestNG)
+UI scenarios & steps (Cucumber)
+
+
+
+
 ## Framework Architecture
 
 The framework follows **clear separation of concerns**:
 
-- **Tests** describe business behavior
-- **Clients** abstract API communication
-- **Configuration** centralizes request setup
-- **Models** represent API contracts
-- **Utilities** support execution (data, retry, parsing)
+### Main Configuration
 
 src/main/java
-└── utils
+└── config
 └── ConfigReader.java
 
-src/test/java
-└── api
+
+### API Automation Layer
+
+src/test/java/api
 ├── client → API endpoint abstraction
 ├── config → Request specification setup
 ├── models → API contract models
 ├── tests → Positive & negative scenarios
 └── utils → Test data, retry logic, helpers
+
+
+### UI Automation Layer
+
+src/test/java/ui
+├── base → BasePage abstraction
+├── config → UI configuration
+├── driver → WebDriver lifecycle & cross-browser support
+├── pages → Page Object Model
+└── cucumber
+├── hooks → Setup / teardown, screenshots on failure
+├── runners → Cucumber JUnit runner
+└── steps → Step definitions
+
 
 ---
 
@@ -72,16 +104,20 @@ src/test/java
 ### Covered Features
 - Retrieve all products
 - Retrieve product by ID
-- Create product (positive & negative scenarios)
+- Create product (positive scenarios)
+- Negative scenarios (limited by FakeStore API validation)
 - HTTP status validation
 - Response body validation
 - API contract awareness
 
 ---
+
 ## API User Stories & Test Cases
 
 User stories and test cases are written **before automation**, following real-world QA processes.
-Location: src/test/resources/testcases/
+**Location:**
+src/test/resources/userstories/api
+src/test/resources/testcases/api
 
 ### Example User Story
 
@@ -117,7 +153,7 @@ So that I can browse items before purchasing.
 - US-UI-CART-001: Add product to cart
 - US-UI-CHECKOUT-001: Complete checkout flow
 
-Location of UI user stories and test cases: src/test/resources/testcases/saucedemo-ui-testcases.md
+Location of UI user stories and test cases: src/test/resources/testcases/ui
 
 > UI automation implementation focuses on **smoke tests only**, aligned with real CI/CD practices.
 
@@ -128,13 +164,24 @@ Location of UI user stories and test cases: src/test/resources/testcases/saucede
 
 ## Execution Strategy
 
-- API tests executed first (API-first approach)
-- UI tests rely on stable backend behavior
-- Retry mechanism protects CI pipelines
-- Framework designed to run with:
-  - TestNG (current)
-  - JUnit (planned)
-  - Cucumber (BDD layer planned)
+### API Tests (TestNG)
+
+```bash
+mvn test
+
+Use:
+testng-api.xml
+API-first execution strategy
+
+### UI Tests (Cucumber + JUnit)
+```bash
+mvn test -Dtest=RunUiCucumberTest
+With browser selection:
+mvn test -Dtest=RunUiCucumberTest -Dbrowser=chrome
+mvn test -Dtest=RunUiCucumberTest -Dbrowser=firefox
+mvn test -Dtest=RunUiCucumberTest -Dbrowser=edge
+
+Supported browsers: chrom, firebox , Edge
 
 ---
 
@@ -154,11 +201,11 @@ This repository demonstrates:
 - [x] API automation framework
 - [x] API user stories & test cases
 - [x] SauceDemo UI user stories & test cases
-- [ ] UI smoke automation (Selenium)
-- [ ] JUnit support
-- [ ] Cucumber BDD integration
+- [x] UI smoke automation (Selenium)
+- [x] JUnit support
+- [x] Cucumber BDD integration
 - [ ] CI pipeline integration
-- [ ] Test reporting
+
 
 ---
 
@@ -232,7 +279,7 @@ to re-run failed tests a limited number of times.
 **Tai**  
 Senior QA Automation Engineer  
 Belgium
-Contact: 
+
 tuerkentai.x@gmail.com
 
 
