@@ -5,3 +5,13 @@
 .classpath
 .project
 /test-output/
+
+# Maven
+target/
+
+# Allure
+allure-results/
+allure-report/
+
+# Allure local files
+.allure/

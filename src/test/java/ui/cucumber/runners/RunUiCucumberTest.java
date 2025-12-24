@@ -9,7 +9,13 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
     features = "src/test/resources/features/ui",
     glue = {"ui.cucumber.steps", "ui.cucumber.hooks"},
-    tags = "@ui"
+    	    plugin = {
+    	            "pretty",
+    	            "json:target/cucumber-results/cucumber.json",
+    	            "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+    	        },
+    	    tags = "@ui"
+    
 )
 public class RunUiCucumberTest {
 }
