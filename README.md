@@ -1,32 +1,40 @@
-# API + UI Hybrid Automation framework (Restassured + TestNG + Java | Cucumber + JUnit + Selenium + Page Object Model | Allure Reporting )
+# API + UI Hybrid Automation Framework  
+*(RestAssured + TestNG + Java | Selenium + Cucumber + JUnit | Page Object Model | Allure Reporting)*
+
+---
 
 
-Senior-level QA automation project demonstrating **API-first testing** combined with **UI smoke automation**, built using Java-based tooling and real-world QA engineering practices.
+## Overview
 
-This repository reflects how a **senior QA automation engineer** designs frameworks that are:
+Senior-level QA automation project demonstrating an **API-first testing strategy** combined with **UI smoke automation**, built with Java-based tooling and real-world QA engineering practices.
+
+This repository reflects how an **Experienced QA Automation Engineer** designs and evolves test frameworks that are:
+
 - scalable  
 - maintainable  
 - CI/CD ready  
 - aligned with business requirements and test traceability  
+
+The project intentionally focuses on **architecture, test strategy, and CI readiness**, rather than only tool usage.
 
 ---
 
 ## Project Goals
 
 
-- Build a **clean, maintainable API automation framework**
-- Apply **real user stories and test cases** before automation
+- Build a **clean and maintainable API automation framework**
+- Apply **real user stories and test cases before automation**
 - Demonstrate an **API-first testing strategy**
 - Implement **UI smoke automation** aligned with CI pipelines
 - Support **multiple execution styles** (TestNG, JUnit, Cucumber)
-- Provide **unified test reporting** for API and UI layers
+- Provide **unified reporting** for API and UI layers
 
 ---
 
 ## Technology Stack
 
 ### Core
-- Java 17
+- Java (Java 8 compatible – CI-safe)
 - Maven
 
 ### API Automation
@@ -47,48 +55,51 @@ This repository reflects how a **senior QA automation engineer** designs framewo
 
 ---
 ## Reporting (Allure)
+
 - This project uses Allure for unified reporting across API and UI tests.
+
 ### Generate Report
+```bash
 mvn allure:serve
+```
+
 ### Report Includes
-API test results (TestNG)
-UI scenarios & steps (Cucumber)
+- API test results (TestNG)
+- UI scenarios & steps (Cucumber)
 
-
+---
 
 
 ## Framework Architecture
 
-The framework follows **clear separation of concerns**:
+The framework follows clear separation of concerns, inspired by real enterprise QA projects.
 
 ### Main Configuration
 
 src/main/java
-└── config
-└── ConfigReader.java
+-config.ConfigReader.java
 
 
 ### API Automation Layer
 
 src/test/java/api
-├── client → API endpoint abstraction
-├── config → Request specification setup
-├── models → API contract models
-├── tests → Positive & negative scenarios
-└── utils → Test data, retry logic, helpers
+- client → API endpoint abstraction
+- config → Request specification setup
+- models → API contract models
+- tests → Positive & negative scenarios
+- utils → Test data, retry logic, helpers
 
 
 ### UI Automation Layer
 
 src/test/java/ui
-├── base → BasePage abstraction
-├── config → UI configuration
-├── driver → WebDriver lifecycle & cross-browser support
-├── pages → Page Object Model
-└── cucumber
-├── hooks → Setup / teardown, screenshots on failure
-├── runners → Cucumber JUnit runner
-└── steps → Step definitions
+- base → BasePage abstraction
+- config → UI configuration
+- driver → WebDriver lifecycle & cross-browser support
+- pages → Page Object Model
+- cucumber→ hooks → Setup / teardown, screenshots on failure
+- cucumber→ runners → Cucumber JUnit runner
+- cucumber→ steps → Step definitions
 
 
 ---
@@ -139,7 +150,7 @@ So that I can browse items before purchasing.
 - API contract changes detected early
 
 ---
-## UI Automation Scope (SauceDemo)
+## UI Automation Scope 
 ### Application Under Test
 **SauceDemo**
 
@@ -150,7 +161,9 @@ So that I can browse items before purchasing.
 - US-UI-CART-001: Add product to cart
 - US-UI-CHECKOUT-001: Complete checkout flow
 
-Location of UI user stories and test cases: src/test/resources/testcases/ui
+Location:
+src/test/resources/testcases/ui
+
 
 > UI automation implementation focuses on **smoke tests only**, aligned with real CI/CD practices.
 
@@ -168,7 +181,7 @@ This repository demonstrates:
 - API-first strategy
 - Hybrid API + UI framework design
 - Extensibility for multiple test runners and BDD
-
+- CI-aware configuration and execution
 ---
 
 ## Roadmap
@@ -179,7 +192,9 @@ This repository demonstrates:
 - [x] UI smoke automation (Selenium)
 - [x] JUnit support
 - [x] Cucumber BDD integration
-- [ ] CI pipeline integration
+- [x] Jenkins CI execution(headless)
+- [ ] Pipeline as code (Jenkinsfile)
+- [ ] Nightly UI execution strategy
 
 
 ---
@@ -265,14 +280,14 @@ API-first execution strategy
 UI Tests (Cucumber + JUnit)
 
 ```bash
-mvn test -Dtest=RunUiCucumberTest
+mvn test -Pui-tests
 With browser selection:
-mvn test -Dtest=RunUiCucumberTest -Dbrowser=chrome
-mvn test -Dtest=RunUiCucumberTest -Dbrowser=firefox
-mvn test -Dtest=RunUiCucumberTest -Dbrowser=edge
+mvn test -Pui-tests -Dbrowser=chrome -Dheadless=true
+mvn test -Pui-tests -Dbrowser=firefox -Dheadless=false
+mvn test -Pui-tests -Dbrowser=edge -Dheadless=true
 ```
 Supported browsers: 
-chrom
+chrome
 firefox
 edge
 
