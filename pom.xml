@@ -4,9 +4,17 @@
   <artifactId>api-ui-hybrid-automationFramework</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
-  <properties>
-    <java.version>17</java.version>
-  </properties>
+<properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+</properties>
+
+  
+  
+  
+  
+  
+  
 
 <dependencyManagement>
     <dependencies>
@@ -23,6 +31,14 @@
 
 
   <dependencies>
+  
+  
+  <dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.9.2</version>
+</dependency>
+
 
 
 <!-- Allure for TestNG -->
@@ -62,7 +78,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.21.0</version>
+      <version>4.25.0</version>
     </dependency>
 
     <!-- Cucumber -->
@@ -146,13 +162,19 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
+        
+        
+        <systemPropertyVariables>
+            <headless>${headless}</headless>
+            <browser>${browser}</browser>
+        </systemPropertyVariables>
+        
+        
           <suiteXmlFiles>
             <suiteXmlFile>src/test/resources/testng-api.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>
-      
-
       
       
       
