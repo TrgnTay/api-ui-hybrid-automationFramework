@@ -1,41 +1,85 @@
 package ui.driver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import ui.config.UiConfig;
+import utils.ConfigReader;
 
-import java.time.Duration;
+public class DriverFactory {
+	
+	
+	
+	
+	
+	
+	
+	public static WebDriver createDriver() {
+		
+		
+		
+		
+		
+	    return createDriver(UiConfig.getBrowser());
+	}
+	
 
-public final class DriverFactory {
+    public static WebDriver createDriver(BrowserType browserType) {
+    	
+ 
+    	
+    	
+    	
 
-    private DriverFactory() {}
+        switch (browserType) {
 
-    public static WebDriver createDriver() {
+            case CHROME -> {
+                ChromeOptions options = new ChromeOptions();
+                if (UiConfig.isHeadless()) {
+                    options.addArguments("--headless=new");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--window-size=1920,1080");
+                }
+                return new org.openqa.selenium.chrome.ChromeDriver(options);
+            }
 
-        BrowserType browser =
-                BrowserType.valueOf(UiConfig.getBrowser());
+            case FIREFOX -> {
+                FirefoxOptions options = new FirefoxOptions();
+                if (UiConfig.isHeadless()) {
+                    options.addArguments("--headless");
+                }
+                return new org.openqa.selenium.firefox.FirefoxDriver(options);
+            }
 
-        WebDriver driver;
+            case EDGE -> {
+            	System.setProperty(
+            	        "webdriver.edge.driver",
+            	        "D:\\QA Softwares\\edgedriver_win64\\msedgedriver.exe"
+            	    );
+            	 EdgeOptions options = new EdgeOptions();
 
-        switch (browser) {
-            case FIREFOX:
-                driver = new FirefoxDriver();
-                break;
+            	    if (UiConfig.isHeadless()) {
+            	    	options.addArguments("--headless=new");
+            	        options.addArguments("--disable-gpu");
+            	        options.addArguments("--no-sandbox");
+            	        options.addArguments("--disable-dev-shm-usage");
+            	        options.addArguments("--window-size=1920,1080");
+            	    }
 
-            case EDGE:
-                driver = new EdgeDriver();
-                break;
+            	    return new org.openqa.selenium.edge.EdgeDriver(options);
 
-            case CHROME:
-            default:
-                driver = new ChromeDriver();
+            }
+            default -> throw new IllegalArgumentException("Unsupported browser: " + browserType);
         }
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-        driver.manage().window().maximize();
-
-        return driver;
+        
+        
+        
+        
+        
+        
     }
 }
+
